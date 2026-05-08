@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg: 250 248 243;          /* paper */
+    --fg: 26 26 26;             /* ink */
+    --fg-muted: 92 92 88;
+    --rule: 217 212 199;
+    --accent: 59 89 152;
+    --accent-warm: 163 59 42;
+    --surface-elev: 245 241 230;
+  }
+  .dark {
+    --bg: 10 18 32;             /* midnight */
+    --fg: 232 224 210;          /* cream */
+    --fg-muted: 154 145 130;
+    --rule: 31 42 64;
+    --accent: 122 162 217;
+    --accent-warm: 217 132 110;
+    --surface-elev: 16 26 44;
+  }
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    background-color: rgb(var(--bg));
+    color: rgb(var(--fg));
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 17px;
+    line-height: 1.65;
+    font-feature-settings: "ss01", "kern";
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  h1, h2, h3, h4 {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: rgb(var(--fg));
+  }
+  code, pre, .mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+  ::selection {
+    background-color: rgb(var(--accent) / 0.25);
+  }
+}
+
+@layer components {
+  .container-doc {
+    @apply mx-auto max-w-wide px-6 md:px-10;
+  }
+  .rule-line {
+    border-color: rgb(var(--rule));
+  }
+  .small-caps {
+    font-variant-caps: all-small-caps;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+  }
+  .accent-text {
+    color: rgb(var(--accent));
+  }
+  .warm-text {
+    color: rgb(var(--accent-warm));
+  }
+  .figure-frame {
+    background-color: rgb(var(--surface-elev));
+    border: 1px solid rgb(var(--rule));
+    border-radius: 2px;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  }
+  .figure-frame:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px -12px rgb(var(--fg) / 0.15);
+  }
+  .nav-link {
+    @apply block py-1.5 text-sm transition-colors;
+    color: rgb(var(--fg-muted));
+  }
+  .nav-link:hover {
+    color: rgb(var(--fg));
+  }
+  .nav-link.active {
+    color: rgb(var(--accent));
+    font-weight: 500;
+  }
+  .pull-quote {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 1.35rem;
+    line-height: 1.5;
+    color: rgb(var(--fg));
+  }
+  .stat-num {
+    font-family: 'EB Garamond', serif;
+    font-feature-settings: "lnum", "tnum";
+    font-weight: 500;
+    line-height: 1;
+  }
+}
+
+/* recharts theming */
+.recharts-cartesian-axis-tick text {
+  fill: rgb(var(--fg-muted)) !important;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+}
+.recharts-cartesian-grid line {
+  stroke: rgb(var(--rule)) !important;
+}
+.recharts-tooltip-wrapper {
+  outline: none !important;
+}
+
+/* subtle paper grain in light, void texture in dark */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.dark body::before {
+  opacity: 0.06;
+}
+
+/* keep z-index stacking sane */
+main, header, aside { position: relative; z-index: 1; }
