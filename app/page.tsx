@@ -537,35 +537,6 @@ export default function Home() {
               National School of Artificial Intelligence (ENSIA), Algiers, in May 2026.
             </P>
 
-            <div className="grid md:grid-cols-2 gap-12 mt-8">
-              <div>
-                <div className="small-caps text-[10px] mb-3" style={{ color: "rgb(var(--fg-muted))" }}>
-                  Authors
-                </div>
-                <ul className="space-y-1 font-display">
-                  {[
-                    "Nedjar Abdelmalek",
-                    "Mezdoud Ala Eddine",
-                    "Maza Islam",
-                    "Tliba Alia",
-                    "Bensimessaoud Souha",
-                    "Souaci Abdennour",
-                  ].map((n) => (
-                    <li key={n} className="text-base">{n}</li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <div className="small-caps text-[10px] mb-3" style={{ color: "rgb(var(--fg-muted))" }}>
-                  Supervisors
-                </div>
-                <ul className="space-y-1 font-display">
-                  <li>Dr. Lounis Karim</li>
-                  <li>Dr. Sahraoui Yacine</li>
-                </ul>
-              </div>
-            </div>
-
             <div className="mt-12 grid md:grid-cols-3 gap-4">
               {[
                 { label: "Full report", sub: "PDF, 17 pages", href: "https://github.com/Abdelmalek05/pixel-adversarial-attack/blob/main/c2-report.pdf" },
